@@ -8,7 +8,18 @@
     <body>
         <h1>benvenuti</h1>
         <h2>Documenti</h2>
-        <a href="documenti/prova.pdf">Prova</a>
+        <h2 id="folder-name"></h2>
+
+    <script>
+        // Ottieni il percorso corrente
+        const path = window.location.pathname;
+        // Dividi il percorso in parti
+        const parts = path.split('/');
+        // Ottieni il nome della cartella corrente
+        const folderName = parts[parts.length - 2]; // -2 per ottenere la cartella
+        // Imposta il nome della cartella nell'h2
+        document.getElementById('folder-name').textContent = folderName;
+    </script>
 
         <script type="text/javascript" src="static/js/myscript.js"></script> 
     </body>

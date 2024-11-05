@@ -20,7 +20,9 @@ jobs:
 
       - name: Compile all LaTeX documents
         run: |
+          shopt -s nullglob
           for file in *.tex; do
+            echo "Compiling $file"
             latexmk -pdf -f -interaction=nonstopmode "$file"
           done
 

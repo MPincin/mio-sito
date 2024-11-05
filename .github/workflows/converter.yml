@@ -1,0 +1,29 @@
+name: LaTeX PDF Build
+
+on:
+  push:
+    branches:
+      - main  # Esegue il workflow solo sul branch principale
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up LaTeX environment
+        uses: dante-ev/latex-action@v2
+
+      - name: Compile all LaTeX documents
+        run: |
+          for file in *.tex; do
+            latexmk -pdf -f -interaction=nonstopmode "$file"
+          done
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: compiled-pdfs
+          path: "*.pdf"  # Carica tutti i PDF generati
